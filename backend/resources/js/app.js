@@ -32,3 +32,5 @@ Vue.use(SuiVue);
 const app = new Vue({
     el: '#app',
 });
+
+require('./bootstrap');
