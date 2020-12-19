@@ -8,6 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
+                    @include('error_card_list')
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 

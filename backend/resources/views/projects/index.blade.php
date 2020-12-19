@@ -1,5 +1,5 @@
 <!-- app.blade.php をベースとして使用することを宣言 -->
-@extends('app')
+@extends('layouts.app')
 
 <!-- app.blade.php の中で定義した "title" を利用する(app側では @yield('title')) -->
 @section('title','TOPページ')
