@@ -8,7 +8,7 @@
         <a href="{{ route('login') }}" class="small item">ログイン</a>
         @endguest
         @auth
-        <a href="#" class="small item">新規プロジェクト</a>
+        <a href="{{ route('projects.create') }}" class="small item">新規プロジェクト</a>
         <div class="ui simple dropdown small item">
             マイメニュー <i class="dropdown icon"></i>
             <div class="menu">

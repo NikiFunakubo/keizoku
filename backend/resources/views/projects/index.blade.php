@@ -32,7 +32,7 @@
             <a class="ui basic label">Basic</a>
             <a class="ui basic label">Basic</a>
             <div class="right floated author">
-                <img class="ui avatar image" src="/images/avatar/small/matt.jpg"> {{ $project->user->name }}
+                <img class="ui avatar image" src="/images/avatar/small/matt.jpg">
             </div>
             <p class="small right floated">登録日 : {{ $project->created_at->format('Y/m/d H:i') }}</p>
         </div>
