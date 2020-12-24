@@ -13,8 +13,6 @@
 
 
 Route::get('/','ProjectController@index')->name('projects.index');
-//Route::post('/projects/store','ProjectController@store')->name('projects.store')->middleware('auth');
-//Route::resource('projects','ProjectController')->except(['index','store'])->middleware('auth');
 Route::resource('projects','ProjectController')->except(['index'])->middleware('auth');
 Auth::routes();
 

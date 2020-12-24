@@ -19,14 +19,20 @@ class ProjectController extends Controller
     }
     public function store(ProjectRequest $request,Project $project)
     {
-        $project->project_name = $request->project_name;
-        $project->project_description = $request->project_description;
+        // $project->project_name = $request->project_name;
+        // $project->project_description = $request->project_description;
+        // $project->target_days = $request->target_days;
+        // $project->achievement_days = $request->achievement_days;
+        // $project->tags = $request->tags;
+        $project->fill($request->all());
         $project->user_id = $request->user()->id;
-        $project->target_days = $request->target_days;
-        $project->achievement_days = $request->achievement_days;
-        //$project->tags = $request->tags;
         $project->save();
         return redirect()->route('projects.index');
+    }
+
+    public function edit(Project $project)
+    {
+        return view('projects.edit',['project' => $project]);
     }
 }
 
