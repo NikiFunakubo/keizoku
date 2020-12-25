@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Project::class,'project');
+    }
     public function index()
     {
         $projects = Project::all()->sortByDesc('created_at');
@@ -41,6 +45,11 @@ class ProjectController extends Controller
     {
         $project->delete();
         return redirect()->route('projects.index');
+    }
+
+    public function show(Project $project)
+    {
+        return view('projects.show',['project'=>$project]);
     }
 }
 
