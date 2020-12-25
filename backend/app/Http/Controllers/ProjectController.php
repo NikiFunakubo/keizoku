@@ -19,11 +19,6 @@ class ProjectController extends Controller
     }
     public function store(ProjectRequest $request,Project $project)
     {
-        // $project->project_name = $request->project_name;
-        // $project->project_description = $request->project_description;
-        // $project->target_days = $request->target_days;
-        // $project->achievement_days = $request->achievement_days;
-        // $project->tags = $request->tags;
         $project->fill($request->all());
         $project->user_id = $request->user()->id;
         $project->save();
@@ -33,6 +28,19 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         return view('projects.edit',['project' => $project]);
+    }
+
+    public function update(ProjectRequest $request,Project $project)
+    {
+        //user_idの更新は必要ないので記載を省略
+        $project->fill($request->all())->save();
+        return redirect()->route('projects.index');
+    }
+
+    public function destroy(Project $project)
+    {
+        $project->delete();
+        return redirect()->route('projects.index');
     }
 }
 

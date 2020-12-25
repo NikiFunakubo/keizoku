@@ -11,7 +11,7 @@ class Project extends Model
         'project_name',
         'project_desription',
         'target_days',
-        'achievemant_days',
+        'achievement_days',
     ];
 
     public function user(): BelongsTo
