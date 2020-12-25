@@ -11,9 +11,9 @@
 |
 */
 
+use App\Http\Controllers\ProjectController;
 
 Route::get('/','ProjectController@index')->name('projects.index');
-Route::resource('projects','ProjectController')->except(['index'])->middleware('auth');
+Route::resource('projects','ProjectController')->except(['index','show'])->middleware('auth');
+Route::resource('projects','ProjectController')->only('show');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
