@@ -1,8 +1,12 @@
 
     <div class="ui link Centered card">
         <div class="content">
-            <i class="right floated like icon"></i>
+            <!--<i class="right floated like icon"></i>-->
+            <span class="right floated">10</span>
             <i class="right floated comment outline icon"></i>
+
+            <project-like :initial-is-liked-by="@json($project->isLikedBy(Auth::user()))">
+            </project-like>
             <div class="header">
                 <a href="{{ route('projects.show',['project' => $project]) }}">{{ $project->project_name }}</a>
             </div>
