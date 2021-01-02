@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import './bootstrap'
 import SuiVue from 'semantic-ui-vue';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -29,8 +29,13 @@ Vue.use(SuiVue);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Vue from 'vue'
+import ProjectLike from './components/ProjectLike'
+
 const app = new Vue({
     el: '#app',
+    components: {
+        ProjectLike,
+    }
 });
 
-require('./bootstrap');
