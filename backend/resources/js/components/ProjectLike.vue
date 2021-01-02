@@ -1,7 +1,11 @@
 <template>
 <div>
-        <span class="right floated">10</span>
-        <i class="right floated heart icon" :class="{'inverted red heart icon right floated':this.isLikedBy}"></i>
+        <span class="right floated">
+            {{ countLikes }}
+        </span>
+        <i class="right floated heart icon"
+          :class="{'inverted red':this.isLikedBy}"
+          @click="clickLike"></i>
 
 </div>
 </template>
@@ -12,11 +16,47 @@ export default {
             type: Boolean,
             default: false,
         },
+        initialCountLikes: {
+            type: Number,
+            default: 0,
+        },
+        authorized: {
+            type: Boolean,
+            default: false,
+        },
+        endpoint: {
+            type: String,
+        },
     },
     data() {
         return {
             isLikedBy: this.initialIsLikedBy,
+            countLikes: this.initialCountLikes,
         }
     },
+    methods: {
+        clickLike() {
+            if(!this.authorized){
+                alert('いいね機能はログイン中のみ使用できます')
+                return
+            }
+
+            this.isLikedBy
+                ? this.unlike()
+                : this.like()
+        },
+        async like() {
+            const response = await axios.put(this.endpoint)
+
+            this.isLikedBy = true
+            this.countLikes = response.data.countLikes
+        },
+        async unlike() {
+            const response = await axios.delete(this.endpoint)
+
+            this.isLikedBy = false
+            this.countLikes = response.data.countLikes
+        }
+    }
 }
 </script>

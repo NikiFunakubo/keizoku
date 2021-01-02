@@ -26,6 +26,7 @@ class ProjectController extends Controller
         $project->fill($request->all());
         $project->user_id = $request->user()->id;
         $project->save();
+        dd($project);
         return redirect()->route('projects.index');
     }
 
@@ -50,6 +51,25 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         return view('projects.show',['project'=>$project]);
+    }
+    public function like(Request $request,Project $project)
+    {
+        $project->likes()->detach($request->user()->id);
+        $project->likes()->attach($request->user()->id);
+
+        return [
+            'id' => $project->id,
+            'countLikes' => $project->count_likes,
+        ];
+    }
+    public function unlike(Request $request,Project $project)
+    {
+        $project->likes()->detach($request->user()->id);
+
+        return [
+            'id' => $project->id,
+            "countLikes" => $project->count_likes,
+        ];
     }
 }
 
