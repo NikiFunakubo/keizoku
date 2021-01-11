@@ -57,10 +57,12 @@
                 </div>
             </div>
         </div>
-        <div class="extra content">
-            <a class="ui basic label">Basic</a>
-            <a class="ui basic label">Basic</a>
-            <a class="ui basic label">Basic</a>
+        @foreach($project->tags as $tag)
+          @if($loop ->first)
+            <div class="extra content">
+          @endif
+            <a href="{{ route('tags.show',['name'=>$tag->name]) }}" class="ui basic label">{{ $tag->hashtag }}</a>
+          @endforeach
             <div class="right floated author">
                 <img class="ui avatar image" src="/images/avatar/small/matt.jpg">
                 {{ $project->user->name}}

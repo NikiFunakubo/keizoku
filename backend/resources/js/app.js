@@ -31,11 +31,13 @@ Vue.use(SuiVue);
 
 import Vue from 'vue'
 import ProjectLike from './components/ProjectLike'
+import ProjectTagsInput from './components/ProjectTagsInput'
 
 const app = new Vue({
     el: '#app',
     components: {
         ProjectLike,
+        ProjectTagsInput,
     }
 });
 

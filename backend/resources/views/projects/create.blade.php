@@ -6,6 +6,7 @@
 
 @section('content')
 <form method="POST" action="{{ route('projects.store') }}">
+    @include('error_card_list')
     @include('projects.form')
     <button type="submit" class="ui primary button">
         Save

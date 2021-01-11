@@ -22,3 +22,4 @@ Route::prefix('projects')->name('projects.')->group(function() {
     Route::put('/{project}/like','ProjectController@like')->name('like')->middleware('auth');
     Route::delete('/{project}/like','ProjectController@unlike')->name('unlike')->middleware('auth');
 });
+Route::get('/tags/{name}','TagController@show')->name('tags.show');

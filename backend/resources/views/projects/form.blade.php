@@ -2,7 +2,7 @@
 <ul>
     <li>
         <div class="ui input">
-            <input type="text" name="project_name" placeholder="プロジェクト名" required value="{{ $project->project_name ?? old('project_name') }}">
+            <input type="text" name="project_name" placeholder="プロジェクト名" value="{{ $project->project_name ?? old('project_name') }}">
         </div>
     </li>
     <li>
@@ -12,7 +12,7 @@
     </li>
     <li>
         <div class="ui input">
-            <input type="text" name="target_days" placeholder="目標日数"  required value="{{ $project->target_days ?? old('target_days') }}">
+            <input type="text" name="target_days" placeholder="目標日数" value="{{ $project->target_days ?? old('target_days') }}">
         </div>
     </li>
     <li>
@@ -21,11 +21,18 @@
         </div>
     </li>
     <li>
+        <div class="form-group">
+            <project-tags-input
+             :initial-tags='@json($tagNames ?? [])'
+             :autocomplete-items='@json($allTagNames ?? [])'>
+            </project-tags-input>
+          </div>
+{{--
         <div class="ui right labeled left icon input">
             <i class="tags icon"></i>
             <input type="text" name="tags" placeholder="Enter tags">
             <a class="ui tag label">
                 Add Tag
             </a>
-        </div>
+        </div> --}}
     </li>

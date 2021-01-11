@@ -26,11 +26,10 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'project_name' =>'required|max:255',
-            // 'project_description'=>'max:500',
-            // 'target_days'=>'required|numeric|digits:3',
-            // 'achievement_days'=>'numeric|digits:3|lt:target',
-            // 'tags'=>'max:10',
+            'project_name' =>'required|max:10',
+            'project_description'=>'max:10',
+            'target_days'=>'required|max:365|integer',
+            'tags'=>'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
         ];
     }
 
@@ -41,8 +40,16 @@ class ProjectRequest extends FormRequest
             'project_description'=> 'プロジェクト概要',
             'target_days'=> '目標日数',
             'achievement_days'=> '達成日数',
-            'tags'=> 'タグ名',
+            'tags'=> 'タグ',
         ];
+    }
+    public function passedValidation()
+    {
+        $this->tags = collect(json_decode($this->tags))
+          ->slice(0,5)
+          ->map(function($requestTag){
+            return $requestTag->text;
+          });
     }
 }
 
