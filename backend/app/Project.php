@@ -13,6 +13,7 @@ class Project extends Model
         'project_desription',
         'target_days',
         'achievement_days',
+        //'tags'
     ];
 
     public function user(): BelongsTo
@@ -34,5 +35,9 @@ class Project extends Model
     public function getCountLikesAttribute(): int
     {
         return $this->likes->count();
+    }
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Tag')->withTimestamps();
     }
 }
