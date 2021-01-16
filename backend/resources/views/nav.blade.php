@@ -12,7 +12,7 @@
         <div class="ui simple dropdown small item">
             マイメニュー <i class="dropdown icon"></i>
             <div class="menu">
-                <a class="item" href="#">マイページ</a>
+                <a class="item" href="{{ route('users.show',['name'=>Auth::user()->name]) }}">マイページ</a>
                 <a class="item" href="#">設定</a>
                 <div class="divider"></div>
                 <div class="header">ログアウト</div>
