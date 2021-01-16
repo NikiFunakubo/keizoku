@@ -32,12 +32,14 @@ Vue.use(SuiVue);
 import Vue from 'vue'
 import ProjectLike from './components/ProjectLike'
 import ProjectTagsInput from './components/ProjectTagsInput'
+import FollowButton from './components/FollowButton'
 
 const app = new Vue({
     el: '#app',
     components: {
         ProjectLike,
         ProjectTagsInput,
+        FollowButton,
     }
 });
 
