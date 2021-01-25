@@ -13,12 +13,20 @@
 
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/','ProjectController@index')->name('projects.index');
 Route::resource('projects','ProjectController')->except(['index','show'])->middleware('auth');
 Route::resource('projects','ProjectController')->only('show');
 Auth::routes();
-
+Route::prefix('login')->name('login.')->group(function(){
+    Route::get('/{provider}','Auth\LoginController@redirectToProvider')->name('{provider}');
+    Route::get('/{provider}/callback','Auth\LoginController@handleProviderCallback')->name('{provider}.callback');
+});
+Route::prefix('register')->name('register.')->group(function () {
+    Route::get('/{provider}', 'Auth\RegisterController@showProviderUserRegistrationForm')->name('{provider}');
+    Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
+});
 Route::prefix('projects')->name('projects.')->group(function() {
     Route::put('/{project}/like','ProjectController@like')->name('like')->middleware('auth');
     Route::delete('/{project}/like','ProjectController@unlike')->name('unlike')->middleware('auth');
